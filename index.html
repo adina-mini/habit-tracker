@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Monthly Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#1a2a6c">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <input type="month" id="monthSelector" value="2026-02" onchange="updateTracker()">
+            <h1 id="monthTitle">FEBRUARY 2026</h1>
+        </div>
+        <div class="controls">
+            <button onclick="addprotocol()">+ ADD TASK</button>
+            <button onclick="calculatePrediction()">PERFORMANCE PREDICTION</button>
+            <span id="scoreDisplay"></span>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <section class="grid-card">
+            <table>
+                <thead><tr id="tableHeader"></tr></thead>
+                <tbody id="tableBody"></tbody>
+            </table>
+        </section>
+
+        <aside class="achievement-card">
+            <h3>ACHIEVEMENTS</h3>
+            <input type="text" id="achInput" placeholder="Type and press Enter...">
+            <ul id="achievementList"></ul>
+        </aside>
+    </div>
+
+    <section class="graph-card">
+        <canvas id="performanceChart"></canvas>
+    </section>
+
+    <script src="script.js"></script>
+    <div id="reportModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 style="color: var(--navy);">PERFORMANCE REPORT</h2>
+        <hr>
+        <div id="reportDetails"></div>
+    </div>
+</div>
+</body>
+</html>
