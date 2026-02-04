@@ -1,122 +1,68 @@
 :root {
-    --bg: #f4f7f6; /* Lightest touch of grey */
+    --bg: #f4f7f6;
     --card: #ffffff;
     --navy: #1a2a6c;
     --gold: #b29471;
     --border: #e2e8f0;
 }
 
-body { background: var(--bg); color: var(--navy); font-family: sans-serif; padding: 30px; margin: 0; }
-header { margin-bottom: 25px; }
+body { background: var(--bg); color: var(--navy); font-family: sans-serif; padding: 15px; margin: 0; }
+
 .main-container {
     display: flex;
-    flex-direction: column; /* Stacks Achievements and Table vertically */
+    flex-direction: column; 
     gap: 20px;
     width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
 }
 
 .grid-card, .achievement-card, .graph-card {
     background: var(--card);
     border-radius: 10px;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.03);
     border: 1px solid var(--border);
 }
 
-.grid-card { flex: 3; overflow-x: auto; }
-.achievement-card { flex: 1; }
-.graph-card { height: 450px; width: 100%; }
-
-table { width: 100%;min-width: 800px; /* Forces the table to stay readable */
-     border-collapse: collapse; font-size: 14px; }
-th, td { 
-    border: 1px solid var(--border); 
-    padding: 8px 4px; 
-    text-align: center; 
-    background-color: white; /* Required for sticky columns to look solid */
+/* Horizontal Scroll Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
 }
 
-/* Updated first column logic for mobile swiping */
+table { 
+    border-collapse: collapse; 
+    font-size: 14px; 
+    min-width: 1000px; /* Forces space for all 31 days */
+}
+
+th, td { 
+    border: 1px solid var(--border); 
+    padding: 10px 5px; 
+    text-align: center; 
+    background: white;
+}
+
+/* Locked First Column */
 td:first-child, th:first-child { 
-    text-align: left; 
-    font-weight: bold; 
-    color: var(--navy); 
-    min-width: 150px; 
-    
-    /* Sticky Magic */
     position: sticky; 
     left: 0; 
     z-index: 10; 
+    background: white;
+    min-width: 140px;
+    text-align: left;
     border-right: 2px solid var(--border);
 }
 
-button { background: var(--navy); color: white; border: none; padding: 10px 18px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-#achInput { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 10px; }
-#scoreDisplay { margin-left: 15px; font-weight: bold; color: var(--gold); }
-/* Modal (background overlay) */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.4); 
-}
+.graph-card { height: 350px; width: 100%; margin-top: 20px; }
 
-/* The actual Report Card */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; 
-    padding: 30px;
-    border: 1px solid var(--gold);
-    width: 400px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-    font-family: 'Segoe UI', sans-serif;
-}
+/* Buttons & Inputs */
+button { background: var(--navy); color: white; border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin: 5px 0; }
+#achInput { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 4px; box-sizing: border-box; }
 
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
+/* Modal Styling */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: white; margin: 20% auto; padding: 25px; width: 85%; max-width: 400px; border-radius: 15px; text-align: center; }
 
-.report-item {
-    margin: 15px 0;
-    font-size: 1.1rem;
-    color: var(--navy);
-}
-/* Styling for the Action Buttons */
-.action-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    margin: 0 5px;
-    transition: transform 0.2s;
-}
-
-.edit-btn { color: #2980b9; } /* Professional Blue */
-.delete-btn { color: #e74c3c; } /* Alert Red */
-
-.action-btn:hover { transform: scale(1.2); }
-/* Container to allow sideways swiping on the table */
-.table-container {
-    width: 100%;
-    overflow-x: auto; /* Allows swiping left/right */
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    -webkit-overflow-scrolling: touch; /* Smooth swiping on iPhone */
-}
-/* Make checkboxes easier to tap with fingers */
-input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-}
+input[type="checkbox"] { width: 22px; height: 22px; cursor: pointer; }
